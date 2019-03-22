@@ -28796,7 +28796,7 @@ return /******/ (function(modules) { // webpackBootstrap
     this.hammer.on('panend', this._onDragEnd.bind(this));
     this.hammer.get('pan').set({ threshold: 5, direction: Hammer.DIRECTION_HORIZONTAL });
 
-    if (this.options.enableIcon) {
+    if (this.options.enableIcon && this.tag && this.tag.showIcon) {
       // custom icon
       var icon = document.createElement('div');
       icon.className = 'icon';
