@@ -5,7 +5,7 @@
  * A dynamic, browser-based visualization library.
  *
  * @version 4.19.1
- * @date    2019-03-21
+ * @date    2019-04-16
  *
  * @license
  * Copyright (C) 2011-2017 Almende B.V, http://almende.com
@@ -28805,7 +28805,7 @@ return /******/ (function(modules) { // webpackBootstrap
       icon.style.left = '-20px';
       icon.style.height = '40px';
       icon.style.width = '40px';
-      // Who cares IE 6/7/8?
+      // We don't need to support IE 6/7/8
       if (this.options.onClickIcon) {
         icon.addEventListener("click", function () {
           _this.options.onClickIcon(_this.tag);
@@ -29374,7 +29374,6 @@ return /******/ (function(modules) { // webpackBootstrap
     zoomKey: { string: ['ctrlKey', 'altKey', 'metaKey', ''] },
     zoomMax: { number: number },
     zoomMin: { number: number },
-
     __type__: { object: object }
   };
 
@@ -32908,6 +32907,8 @@ return /******/ (function(modules) { // webpackBootstrap
     zoomMax: { number: number },
     zoomMin: { number: number },
     zIndex: { number: number },
+    enableIcon: { 'boolean': bool },
+    onClickIcon: { 'function': 'function' },
     __type__: { object: object }
   };
 
