@@ -5,7 +5,7 @@
  * A dynamic, browser-based visualization library.
  *
  * @version 4.19.1
- * @date    2019-04-16
+ * @date    2019-04-26
  *
  * @license
  * Copyright (C) 2011-2017 Almende B.V, http://almende.com
@@ -28691,7 +28691,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
   'use strict';
 
-  var Hammer = __webpack_require__(111);
   var util = __webpack_require__(1);
   var Component = __webpack_require__(127);
   var moment = __webpack_require__(81);
@@ -28796,23 +28795,28 @@ return /******/ (function(modules) { // webpackBootstrap
     this.hammer.on('panend', this._onDragEnd.bind(this));
     this.hammer.get('pan').set({ threshold: 5, direction: Hammer.DIRECTION_HORIZONTAL });
 
+    // TODO showIcon should be Promise
     if (this.options.enableIcon && this.tag && this.tag.showIcon) {
-      // custom icon
-      var icon = document.createElement('div');
-      icon.className = 'icon';
-      icon.style.position = 'relative';
-      icon.style.top = '-80px';
-      icon.style.left = '-20px';
-      icon.style.height = '40px';
-      icon.style.width = '40px';
-      // We don't need to support IE 6/7/8
-      if (this.options.onClickIcon) {
-        icon.addEventListener("click", function () {
-          _this.options.onClickIcon(_this.tag);
-        }, false);
-      }
-
-      bar.appendChild(icon);
+      this.tag.showIcon().then(function (res) {
+        console.log(res);
+        if (res) {
+          // custom icon
+          var icon = document.createElement('div');
+          icon.className = 'icon';
+          icon.style.position = 'relative';
+          icon.style.top = '-80px';
+          icon.style.left = '-20px';
+          icon.style.height = '40px';
+          icon.style.width = '40px';
+          // We don't need to support IE 6/7/8
+          if (_this.options.onClickIcon) {
+            icon.addEventListener("click", function () {
+              _this.options.onClickIcon(_this.tag);
+            }, false);
+          }
+          bar.appendChild(icon);
+        }
+      });
     }
   };
 
